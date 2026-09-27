@@ -7,6 +7,8 @@ export const ROUTES = {
   practiceSetup: '/topics/:topicId/practice/setup',
   practiceSession: '/practice/sessions/:sessionId',
   practiceResult: '/practice/sessions/:sessionId/result',
+  battleCreate: '/topics/:topicId/battle/create',
+  battleRoom: '/battle/rooms/:sessionId',
 } as const;
 
 export const buildRoute = {
@@ -14,4 +16,6 @@ export const buildRoute = {
   practiceSetup: (topicId: string) => `/topics/${topicId}/practice/setup`,
   practiceSession: (sessionId: string) => `/practice/sessions/${sessionId}`,
   practiceResult: (sessionId: string) => `/practice/sessions/${sessionId}/result`,
+  battleCreate: (topicId: string) => `/topics/${topicId}/battle/create`,
+  battleRoom: (sessionId: string) => `/battle/rooms/${sessionId}`,
 } as const;

@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import AppLayout from '@/components/AppLayout';
 import { ROUTES } from '@/routes/paths';
+import BattleCreate from '@/screens/BattleCreate';
+import BattleLobby from '@/screens/BattleLobby';
 import Home from '@/screens/Home';
 import Login from '@/screens/Login';
 import ModeSelect from '@/screens/ModeSelect';
@@ -24,6 +26,8 @@ function App() {
           <Route path={ROUTES.practiceSetup} element={<PracticeSetup />} />
           <Route path={ROUTES.practiceSession} element={<PracticeQuestion />} />
           <Route path={ROUTES.practiceResult} element={<PracticeResult />} />
+          <Route path={ROUTES.battleCreate} element={<BattleCreate />} />
+          <Route path={ROUTES.battleRoom} element={<BattleLobby />} />
           <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
         </Routes>
       </AppLayout>

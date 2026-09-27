@@ -13,4 +13,11 @@ export const ENDPOINTS = {
   practiceSession: (sessionId: string) => `${API_PREFIX}/practice/sessions/${sessionId}`,
   practiceAnswers: (sessionId: string) => `${API_PREFIX}/practice/sessions/${sessionId}/answers`,
   practiceResult: (sessionId: string) => `${API_PREFIX}/practice/sessions/${sessionId}/result`,
+  battleRooms: `${API_PREFIX}/battle/rooms`,
+  battleRoom: (sessionId: string) => `${API_PREFIX}/battle/rooms/${sessionId}`,
+  joinBattleRoom: `${API_PREFIX}/battle/rooms/join`,
+  battleReady: (sessionId: string) => `${API_PREFIX}/battle/rooms/${sessionId}/ready`,
+  leaveBattleRoom: (sessionId: string) => `${API_PREFIX}/battle/rooms/${sessionId}/players/me`,
+  startBattleRoom: (sessionId: string) => `${API_PREFIX}/battle/rooms/${sessionId}/start`,
+  cancelBattleRoom: (sessionId: string) => `${API_PREFIX}/battle/rooms/${sessionId}/cancel`,
 } as const;

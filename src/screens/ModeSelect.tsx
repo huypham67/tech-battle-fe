@@ -60,20 +60,20 @@ export default function ModeSelect() {
           <ArrowRight className="mode-card__arrow" aria-hidden="true" size={18} />
         </button>
 
-        <div className="mode-card mode-card--disabled" aria-disabled="true">
+        <button
+          type="button"
+          className="mode-card"
+          onClick={() => topicId && navigate(buildRoute.battleCreate(topicId))}
+        >
           <span className="mode-card__icon" aria-hidden="true">
             <Swords size={22} strokeWidth={1.8} />
           </span>
           <span className="mode-card__body">
-            <span className="mode-card__title">
-              Thi đấu
-              <span className="mode-card__tag">Sắp có</span>
-            </span>
-            <span className="mode-card__desc">
-              Đấu real-time với người chơi khác theo bảng xếp hạng.
-            </span>
+            <span className="mode-card__title">Thi đấu</span>
+            <span className="mode-card__desc">Tạo phòng, rủ bạn bè và sẵn sàng cho trận đấu.</span>
           </span>
-        </div>
+          <ArrowRight className="mode-card__arrow" aria-hidden="true" size={18} />
+        </button>
       </div>
     </main>
   );
