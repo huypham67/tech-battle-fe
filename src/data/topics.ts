@@ -1,6 +1,6 @@
-import type { TopicTreeNode } from '@/types';
+import type { TopicTreeResponse } from '@/types/topic';
 
-function createChild(parentId: string, name: string): TopicTreeNode {
+function createChild(parentId: string, name: string): TopicTreeResponse {
   const slug = name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -11,7 +11,7 @@ function createChild(parentId: string, name: string): TopicTreeNode {
     name,
     slug,
     description: null,
-    iconUrl: null,
+    iconKey: null,
     status: 'ACTIVE',
     parentId,
     children: [],
@@ -23,20 +23,20 @@ function createTopic(
   name: string,
   description: string,
   childNames: string[],
-): TopicTreeNode {
+): TopicTreeResponse {
   return {
     id,
     name,
     slug: id,
     description,
-    iconUrl: null,
+    iconKey: id,
     status: 'ACTIVE',
     parentId: null,
     children: childNames.map((childName) => createChild(id, childName)),
   };
 }
 
-export const TOPIC_TREE: TopicTreeNode[] = [
+export const TOPIC_TREE: TopicTreeResponse[] = [
   createTopic('backend', 'Backend', 'Java, Spring Boot, REST và dịch vụ.', [
     'Java',
     'Spring Boot',
@@ -86,6 +86,6 @@ export const TOPIC_TREE: TopicTreeNode[] = [
   ]),
 ];
 
-export function getTopicTree(): TopicTreeNode[] {
+export function getTopicTree(): TopicTreeResponse[] {
   return TOPIC_TREE;
 }

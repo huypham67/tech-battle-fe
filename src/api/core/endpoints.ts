@@ -9,4 +9,8 @@ export const ENDPOINTS = {
   refresh: `${API_PREFIX}/auth/refresh`,
   logout: `${API_PREFIX}/auth/logout`,
   me: `${API_PREFIX}/users/me`,
+  practiceSessions: `${API_PREFIX}/practice/sessions`,
+  practiceSession: (sessionId: string) => `${API_PREFIX}/practice/sessions/${sessionId}`,
+  practiceAnswers: (sessionId: string) => `${API_PREFIX}/practice/sessions/${sessionId}/answers`,
+  practiceResult: (sessionId: string) => `${API_PREFIX}/practice/sessions/${sessionId}/result`,
 } as const;

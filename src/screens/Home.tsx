@@ -1,16 +1,18 @@
 import { Box, Boxes, Cloud, Database, Network, Server, Settings2, Terminal } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { buildRoute } from '@/routes/paths';
 import { useTopicTreeQuery } from '@/queries/topics.queries';
 
 const TOPIC_ICONS: Record<string, LucideIcon> = {
-  backend: Server,
+  server: Server,
   database: Database,
-  devops: Settings2,
+  settings: Settings2,
   cloud: Cloud,
-  linux: Terminal,
-  networking: Network,
-  docker: Box,
-  kubernetes: Boxes,
+  terminal: Terminal,
+  network: Network,
+  box: Box,
+  boxes: Boxes,
 };
 
 function HomeStatus({ children }: { children: React.ReactNode }) {
@@ -18,6 +20,7 @@ function HomeStatus({ children }: { children: React.ReactNode }) {
 }
 
 export default function Home() {
+  const navigate = useNavigate();
   const { data: topics, isError, isLoading, refetch } = useTopicTreeQuery();
 
   if (isLoading) {
@@ -68,13 +71,22 @@ export default function Home() {
           {topics.map((topic, index) => {
             const visibleChildren = topic.children.slice(0, 3).map((child) => child.name);
             const extraChildren = topic.children.length - visibleChildren.length;
-            const TopicIcon = TOPIC_ICONS[topic.id] ?? Boxes;
+            const TopicIcon = TOPIC_ICONS[topic.iconKey ?? ''] ?? Boxes;
 
             return (
               <article
-                className="topic-card"
+                className="topic-card topic-card--interactive"
                 key={topic.id}
                 style={{ animationDelay: `${index * 45}ms` }}
+                role="button"
+                tabIndex={0}
+                onClick={() => navigate(buildRoute.modeSelect(topic.id))}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    navigate(buildRoute.modeSelect(topic.id));
+                  }
+                }}
               >
                 <div className="topic-card__topline">
                   <span className="topic-card__icon" aria-hidden="true">
